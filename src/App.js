@@ -1,90 +1,66 @@
+// FONTS
+import "./fonts/Android.ttf"; import "./fonts/Android Hollow.ttf"; import "./fonts/Android Italic.ttf"; import "./fonts/Android Scratch.ttf";
+
+// COMPONENTS
+import Header from "./components/Header"; import LoginForm from "./components/LoginForm"; import LogoutForm from "./components/LogoutForm";
+import SigninForm from "./components/SigninForm"; import Products from "./components/Products"; import Cartitems from "./components/Cartitems";
+import Footer from "./components/Footer"; import Shoppers from "./components/Shoppers";
+
+// STYLES
+import "./App.css"; 
+
+// FUNCTIONS
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Cart from "./components/Cart";
-import Header from "./components/Header";
-import LoginPage from "./components/LoginPage";
-import Products from "./components/Products";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-    const [products, setProducts] = useState([])
-    const [session, setSession] = useState(localStorage.getItem('session'))
+  const [shoppers, setShoppers] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [cartitems, setCartitems] = useState([]);
+  // const [session] = useState(localStorage.getItem("session"));
 
-    axios.defaults.withCredentials = true;
+function handleCartUpdate() {
+    axios.get("http://localhost:8000/api/cart_items/").then((response) => {
+         setCartitems(response.data);}).catch((error) => {console.log(error.response.data); });}
 
+  useEffect(() => {
+    axios.get("http://localhost:8000/shoppers/").then((response) => {setShoppers(response.data);});
+      console.log("use effect called!");}, []);
 
-    useEffect(() => {
-        // fetch("https://shopping-k6qe.onrender.com/products")
-        axios.get("http://localhost:8000/products/")
-            .then((response) => setProducts(response.data))
-        console.log('use effect called!')
-    }, [])
+  useEffect(() => {
+    axios.get("http://localhost:8000/products/").then((response) => {setProducts(response.data);});
+      console.log("use effect called!");}, []);
 
-    // this function logs the user in
-    function login(user, pass) {    
-        axios.post('http://localhost:8000/login/', {
-            username: user,
-            password: pass,
-        })
-            .then(response => {
-                console.log(response.data);
-                setSession('logged-in')
-                localStorage.setItem('session', 'logged-in')
+  useEffect(() => {
+    axios.get("http://localhost:8000/cart_items/").then((response) => {setCartitems(response.data);})
+      .catch((error) => {console.log(error.response.data);}); console.log("use effect called!");}, []);
 
-            })
-            .catch(error => {
-                console.log(error);
-                let status = error.message
-                switch (error.code) {
-                    case "ERR_BAD_REQUEST":
-                        status = "username or password not correct"
-                        break
-                    case "ERR_NETWORK":
-                        status = "could not reach the server. perhaps it is down?"
-                        break
-                    case "ERR_BAD_RESPONSE":
-                        status = "server is up. but had an error. you can try again in a fews seconds"
-                        break
-                    default:
-                        break
-                }
-                alert("something went wrong: " + status)
-            });
-    }
-    function logout() {
-
-        // fetch("https://shopping-k6qe.onrender.com/products")
-        axios.get("http://localhost:8000/logout/")
-        setSession(null)
-        localStorage.removeItem('session')
-    }
-
-    return (
-        <div className="App">
-            <BrowserRouter>
-
-                <h1>My Cart Application</h1>
-                {session ? <>
-                    <Header logout={logout} />
-                    <Routes>
-                        <Route path="/" element={
-                            <Products products={products} />} />
-                        <Route path="/cart" element={<Cart />} />
-                        <Route path="/logout" element={<Cart />} />
-                    </Routes>
-                </> :
-                    <Routes>
-                        <Route path="*" element={<LoginPage login={login} />} />
-                    </Routes>
-
-                }
+  return (
+    <BrowserRouter>
+    <div className="screenall">
 
 
+    <div className="screenmid">
+        <Routes>
+        
+        <Route path="/" element={<Products products={products} />} />
+        <Route path="/cartitems" element={<Cartitems cartitems={cartitems} onUpdateCart={handleCartUpdate} setCartitems={setCartitems} />} />
+        <Route path="/login" element={<LoginForm login={"login"} />} />
+        <Route path="/signin" element={<SigninForm signin={"signin"} />} />
+        <Route path="/logout" element={<LogoutForm logout={"logout"} />} />
+        <Route path="/shoppers" element={<Shoppers shoppers={shoppers} />} />
+        </Routes>
+    </div>
+        
+    <div className="screentop"> <Header /></div>
+            {/* {session ? (<h2>Hello {session}</h2>) : ( <p className="login-prompt">Please log in</p>)} */}
+    <div className="screenbottom"><Footer/></div>
 
-            </BrowserRouter>
+    </div>
+</BrowserRouter>
 
-        </div>
-    );
+  );
 }
-
 export default App;
+

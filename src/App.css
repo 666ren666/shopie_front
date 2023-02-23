@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
-}
+/* ======================= MAIN ====================================== */
+.screenall {height: 100%; width: 100%; display: flex; flex-direction: column;}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* ======================= HEADER ====================================== */
+.screentop {width:100%; height: 20vh; position: fixed;top: 0; left: 0;}
+    .topcontainer {height: 100%; width: 100%; display: flex; flex-direction: column; }
+        .blue {  background: rgb(2,0,36);  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(19,25,51,1) 35%, rgba(49,67,81,1) 100%);  height: 60%; align-items: center; justify-content: center; }
+        .white { background: rgb(255, 255, 255); height: 2.5%}
+        .orange { background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,114,0,1) 0%, rgba(255,198,0,1) 100%); height: 35%; display: flex; flex-direction: column; }
+        .whitewithshaddow{ background: rgb(255, 255, 255); height: 2.5%;  filter: drop-shadow(0vw 0.3vw 0.2vw #4f4f4f); }
+            .menu_buttons { justify-content: center;}
+            .menu_button { font-family: "Android"; font-size:  3vw; padding-left: 1vh; padding-right: 1vh; transform: translateY(-16%) }
+            .nav-link{ color: rgb(255, 255, 255) !important;}
+            .nav-link:hover { color: rgb(47, 64, 79) !important;}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* ========================FOOTER===================================== */
+.screenbottom {width:100%; height: 10vh; position: fixed; bottom: 0; left: 0;}
+    .bottomcontainer {height: 100%; width: 100%; background-color: rgb(88, 88, 123); display: flex; flex-direction: column;}
+        .whitewithshaddow2{ background: rgb(255, 255, 255); height: 5%;  filter: drop-shadow(0vw -0.3vw 0.2vw #4f4f4f); }
+        .orange2 { background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,114,0,1) 0%, rgba(255,198,0,1) 100%); height: 70%; display: flex; flex-direction: column; }
+        .white2 { background: rgb(255, 255, 255); height: 5% }
+        .blue2 {  background: rgb(2,0,36);  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(19,25,51,1) 35%, rgba(49,67,81,1) 100%);  height: 20%; align-items: center; justify-content: center; }
+            .footer_buttons {justify-content: center;}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/* ============================= MAIN DIV =================================== */
+.screenmid { height: 100%; width:100%; max-width: 100%; overflow: hidden; display: flex; }
 
-.App-link {
-  color: #61dafb;
-}
+/* ============================ PRODUCTS ==================================== */
+.midcontainer {height: 80%; width: 100%;}
+.product_main_div { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin: 0 auto;  max-width: 1920px; width: 100vw; padding-right:5vw; padding-left:5vw; padding-bottom: 50vh;padding-top: 30vh; }
+.product-col { margin: 1vh 0 1vh 0 ; width: calc(25% - 1vh); height: 70vh; /* background-color: red;  */}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* ============================ PRODUCT ===================================== */
+    .product_info { background-color:rgb(170, 170, 170); width:100%; height: 10%; border-top-right-radius: 1rem;}
+        .product_text { font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-align:left; padding-left: 1rem; position: inherit;text-transform: uppercase; font-size: 2rem;}
+    .product_bg_image {  aspect-ratio: 1/1;  object-fit: cover;  background-image: url('./images/item_bg.jpg');  background-repeat: no-repeat;  background-position:start;  background-size:100%; width: 100%; height: 80%; align-items:first baseline; justify-content: center;}
+        .product_bg_image:hover { aspect-ratio: 1/1; object-fit: cover; background-image: url('./images/item_bg_hover.jpg'); background-repeat: no-repeat; background-position:start; background-size:100%; width: 100%; height: 82%; align-items:first baseline; justify-content: center;}
+        .product_image { aspect-ratio: 1/1; object-fit: cover; position: inherit; margin-left: 10%; margin-top: 10%; width: 80%; }
+    .buttons_container{ width: 100%; height: 12%; background-color:rgb(170, 170, 170); display: flex; align-items: center; justify-content: center; border-bottom-left-radius: 1rem; }
+        .add_button{ position:relative; background:none; border:none; background-image: url('./images/button_add.png'); background-repeat: no-repeat; background-position: center center; width: 20vw;   height: 8vh; border-color: white; align-items: center; justify-content: center;}
+        .add_button:hover{ position:relative; background:none; border:none; background-image: url('./images/button_add_hover.png'); background-repeat: no-repeat; background-position: center center; width: 20vw;   height: 8vh; border-color: white; align-items: center; justify-content: center;}
+
+  /* ========================== CART =========================================== */
+
+.cart_main_div { position:absolute; width: 85%; padding-top:330px; padding-bottom: 300px;}
+.cart_item_container { margin-bottom: 20px; position: inherit; width: 80%; height: 328px; color: rgb(47, 64, 79); margin-top: 20px; margin-left: 10%;}
+    .cart_item_bg { background-image: url('./images/cart_item_bg.png'); background-repeat: no-repeat; background-position:start; width:100%; height: 100%; align-items:first baseline; justify-content: center;}
+    .cart_item_image { position: inherit; width: 280px; height: 280px; margin-top: 3%; margin-left: 5%;}
+    .cart_item_info { width: 30vw; align-items: left; justify-content: left; padding-top: 5px; margin-right: 50px ; text-transform: uppercase;}
+    .cart_item_name { font-size: 80px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-align:start; padding-top: 5px; text-transform: uppercase;}
+    .cart_item_text { font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-align:start;}
+    .cart_item_amount { font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 25px; width: 250px; height: 200px; color: rgb(47, 64, 79) ; border-radius: 10px; margin-bottom: 8px; text-align: center; align-items: center;}
+    .cart_item_buttons{ width:300px; height: 330px; margin-top: 20px; margin-left: 170px; position: inherit; align-self:flex-end;}
+      .cart_item_button_remove{background:none; border:none; margin:0; cursor: pointer; background-image: url('./images/button_remove.png'); background-repeat: no-repeat; background-position: center center; padding-left: 20px; width: 100%;   height: 8vh; border-color: white; border-radius: 7px;}
+      .cart_item_button_remove:hover{ background:none; border:none; margin:0; cursor: pointer; background-image: url('./images/button_remove_hover.png'); background-repeat: no-repeat; background-position: center center; padding-left: 20px; width: 100%;   height: 8vh; border-color: white; border-radius: 7px;}
+      .button_more{ background:none; border:none; margin:0; cursor: pointer;background-image: url('./images/button_more.png');background-repeat: no-repeat; background-position: center center; padding-left: 20px; width: 100%;   height: 8vh; border-color: rgb(130, 88, 88); border-radius: 7px;}
+        .button_more:hover{ background:none; border:none; margin:0; cursor: pointer;background-image: url('./images/button_more_hover.png'); background-repeat: no-repeat; background-position: center center; padding-left: 20px; width: 100%;   height: 8vh; border-color: rgb(130, 88, 88); border-radius: 7px;}
+      .button_less{ background:none; border:none; margin:0; cursor: pointer; background-image: url('./images/button_less.png'); background-repeat: no-repeat; background-position: center center; padding-left: 20px; width: 100%;   height: 8vh; border-color: rgb(130, 88, 88); border-radius: 7px;}
+        .button_less:hover{ background:none; border:none; margin:0; cursor: pointer; background-image: url('./images/button_less_hover.png'); background-repeat: no-repeat; background-position: center center; padding-left: 20px; width: 100%;   height: 8vh; border-color: rgb(130, 88, 88); border-radius: 7px;}
+      
+
+        .check_button{ transform: translate(14.5rem, 4rem); position:relative; background:none; border:none; background-image: url('./images/button_check.png'); background-repeat: no-repeat; background-position: center center; width: 20vw;   height: 8vh; border-color: white; align-items: center; justify-content: center;}
+        .check_button:hover{ position:relative; background:none; border:none; background-image: url('./images/button_check_hover.png'); background-repeat: no-repeat; background-position: center center; width: 20vw;   height: 8vh; border-color: white; align-items: center; justify-content: center;}
+
+
+
+/* ====================LOG-IN======SIGN-IN=================================== */
+.login_main_div { width: 50%; height:290px; margin-top:337.5px; margin-left:470px; align-items: center; align-content: center;}
+.login_image{ background-image: url('./images/login_bg.jpg'); background-repeat: no-repeat; background-position:top; width: 100%; height: 300px;}
+.login_container { position: inherit; align-items: center; width: 100%; height:600px; color: rgb(47, 64, 79); padding-top: 30px; text-transform: uppercase;}
+.login_text{ padding-top: 80px; text-align: center;}
+  .login_text_2{ padding-left: 350px;} 
+
+/* ======================= SCROLL ====================================== */
+::-webkit-scrollbar { width: 15px; height: 0px;}
+::-webkit-scrollbar-track { height: 200px; ; background: rgba(49,67,81,1);}
+::-webkit-scrollbar-thumb { height:200px; background: rgba(255,198,0,1);}
+::-webkit-scrollbar-thumb:hover { height:200px; background: rgba(255,114,0,1);} 
+
+/* ========================= FONTS ============================================ */
+@font-face {font-family: "Android"; src: local("Android"), url("./fonts/Android.ttf") format("truetype");}
+@font-face {font-family: "Android"; src: local("Android"), url("./fonts/Android\ Italic.ttf") format("truetype");}
+@font-face { font-family: "Android"; src: local("Android"), url("./fonts/Android\ Hollow.ttf") format("truetype");}
+@font-face {font-family: "Android"; src: local("Android"), url("./fonts/Android\ Scratch.ttf") format("truetype");}
