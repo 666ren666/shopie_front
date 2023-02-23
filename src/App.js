@@ -18,6 +18,8 @@ function App() {
   const [shoppers, setShoppers] = useState([]);
   const [products, setProducts] = useState([]);
   const [cartitems, setCartitems] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
   // const [session] = useState(localStorage.getItem("session"));
 
 function handleCartUpdate() {
@@ -44,7 +46,9 @@ function handleCartUpdate() {
     <div className="screenmid">
         <Routes>
         
-        <Route path="/" element={<Products products={products} />} />
+        <Route path="/" element={<Products products={products} selectedCategory={selectedCategory} />} />
+
+
         <Route path="/cartitems" element={<Cartitems cartitems={cartitems} onUpdateCart={handleCartUpdate} setCartitems={setCartitems} />} />
         <Route path="/login" element={<LoginForm login={"login"} />} />
         <Route path="/signin" element={<SigninForm signin={"signin"} />} />
@@ -55,7 +59,7 @@ function handleCartUpdate() {
         
     <div className="screentop"> <Header /></div>
             {/* {session ? (<h2>Hello {session}</h2>) : ( <p className="login-prompt">Please log in</p>)} */}
-    <div className="screenbottom"><Footer/></div>
+    <div className="screenbottom"><Footer setSelectedCategory={setSelectedCategory} /></div>
 
     </div>
 </BrowserRouter>
@@ -63,4 +67,3 @@ function handleCartUpdate() {
   );
 }
 export default App;
-
